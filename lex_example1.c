@@ -2,6 +2,7 @@
 #include <stdio.h> 
 %}
 %% 
+[if|else]+ printf("KEYWORD: %s\n",yytext);
 [0-9]+    printf("NUMBER: %s\n", yytext); 
 [a-zA-Z]+  printf("WORD: %s\n", yytext); 
 [ \t]+                               
