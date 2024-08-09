@@ -1,12 +1,13 @@
 %{ 
 #include <stdio.h> 
-int c=0;
 %}
 %% 
 
-[if|else]+ {printf("KEYWORD: %s\n",yytext);c++;}
+if|else|int|switch|char printf("KEYWORD: %s\n",yytext);
+[a-z_][a-z0-9_]*  printf("IDENTIFIER: %s\n", yytext); 
 [0-9]+    printf("NUMBER: %s\n", yytext); 
-[a-zA-Z]+  printf("WORD: %s\n", yytext); 
+[=+*/^<>-]+  printf("OPERATOR: %s\n", yytext); 
+[0-9][a-zAZ0-9]+ printf("NOT AN IDENTIFIER: %s\n", yytext); 
 [ \t]+ 
 .          printf("UNKNOWN: %s\n", yytext);                     
 [\n] {return 0;}
@@ -16,7 +17,6 @@ int c=0;
  int main() 
   {
     yylex();
-    printf("The number of keywords is %d",c);
     return 0; 
    }
    
