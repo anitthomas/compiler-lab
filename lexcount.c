@@ -21,8 +21,8 @@ here for eg. [^ \t\n]+  means the action part Matches sequences of characters th
 
 %%
 
-[ \t] {word_count++;}
-[\n] {line_count++;word_count++;}
+[ \t] {word_count++;char_count++;}
+[\n] {line_count++;word_count++;char_count;}
 [\n][\n] {return 0;}
 . {char_count++;}
 %%
